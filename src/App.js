@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import MyComponent from './MyComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    showComponent: true
+  }
+
+  toggleShowComponent = () => {
+    this.setState((prevState => {
+      return {showComponent: !prevState.showComponent} 
+    }))
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>React App</h1>
+        <button onClick={this.toggleShowComponent}>Toggle</button>
+        {this.state.showComponent && <MyComponent data="component data"/>}
+      </div>
+    );
+  }
 }
 
 export default App;
